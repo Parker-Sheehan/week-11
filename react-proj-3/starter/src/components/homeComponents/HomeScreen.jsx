@@ -1,14 +1,24 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import AdBanner from './AdBanner'
+import RecipeCard from './RecipeCard'
+import {ImSearch} from "react-icons/im";
+import classes from './HomeScreen.module.css';
 
 const HomeScreen = () => {  
 
   const [recipes,setRecipes] = useState([])
+  const [search, setSearch] = useState('')
+  const ref = useRef(null)
 
   useEffect(() => {
     console.log('oh..no')
     getRecipes()
   },[])
+
+  const changeHandler = () => {
+    setSearch(ref.current.value)
+  }
+  console.log(search)
 
   const getRecipes = async () => {
     const response = await fetch("https://recipes.devmountain.com/recipes")
@@ -25,9 +35,14 @@ const HomeScreen = () => {
   }
 
   return (
-    <div>
-      <AdBanner />
-      {/* Much code from Part 2 will be placed around here. Do your best! */}
+    <div style={{display:'flex',
+    flexDirection: 'column', alignItems: 'center'}}>
+      <AdBanner/>
+      <form className={classes.search} onClick={()=>ref.current.focus()}>
+        <ImSearch></ImSearch>
+        <input ref={ref} onChange={changeHandler} type="text" className={classes.input} placeholder='ex. Cake, Steak, Easy-Bake...'/>
+      </form>
+      <RecipeCard></RecipeCard>
     </div>
   )
 }

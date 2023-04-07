@@ -1,0 +1,34 @@
+.FoodPic{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 30vh;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+    height: 30vh;
+    width: 1000px;
+    font-size: 28px;
+    
+}
+
+.title{
+    color: #f68c5f;
+    font-size: 3rem;
+}
+
+.blueBtn{
+    background-color: #62898A;
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    height: 50px;
+    width: 160px;
+}
