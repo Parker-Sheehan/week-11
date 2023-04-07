@@ -5,12 +5,12 @@
     margin: 25px;
     width: 500px;
     height: 40px;
-    background-color: #fa7a434d;
+    background-color: #fa7a4380;
     border-radius: 30px;
 }
 
 .search:focus-within{
-    background-color: #fa7a4380;
+    background-color: #fa7a434d;
 
 }
 
@@ -25,4 +25,11 @@
 .input:focus{
     outline: none;
 
+}
+
+.listed{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100vw;
 }

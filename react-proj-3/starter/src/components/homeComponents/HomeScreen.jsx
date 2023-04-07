@@ -34,6 +34,16 @@ const HomeScreen = () => {
     }
   }
 
+  const filteredArr = recipes.filter(recipe => {
+    let lowerRecipe = recipe.recipe_name.toLowerCase()
+    let lowerState = search.toLowerCase()
+    if(lowerRecipe.includes(lowerState)){
+      return recipe
+    }
+  })
+  const listOfRecipes = filteredArr.map(recipe => <RecipeCard recipe={recipe}/>)
+
+
   return (
     <div style={{display:'flex',
     flexDirection: 'column', alignItems: 'center'}}>
@@ -42,7 +52,9 @@ const HomeScreen = () => {
         <ImSearch></ImSearch>
         <input ref={ref} onChange={changeHandler} type="text" className={classes.input} placeholder='ex. Cake, Steak, Easy-Bake...'/>
       </form>
-      <RecipeCard></RecipeCard>
+      <div className={classes.listed}>
+      {listOfRecipes}
+      </div>
     </div>
   )
 }

@@ -1,46 +1,17 @@
 import React from "react";
 import classes from "./RecipeCard.module.css";
 
-const RecipeCard = () => {
+const RecipeCard = (props) => {
   return (
-    <div className={classes.listed}>
-      <div className={classes.card}>
+      <div key={props.recipe.recipe_id} className={classes.card}>
         <img
           className={classes.img}
-          src="https://img.taste.com.au/3vSWftg2/taste/2016/11/melt-and-mix-triple-choc-layer-cake-98301-1.jpeg"
+          src={props.recipe.image_url}
           alt=""
         />
-        <h3 className={classes.title}>Triple Chocolate Mousse Cake</h3>
+        <h3 className={classes.title}>{props.recipe.recipe_name}</h3>
         <button className={classes.btn}>See More</button>
       </div>
-      <div className={classes.card}>
-        <img
-          className={classes.img}
-          src="https://img.taste.com.au/3vSWftg2/taste/2016/11/melt-and-mix-triple-choc-layer-cake-98301-1.jpeg"
-          alt=""
-        />
-        <h3 className={classes.title}>Triple Chocolate Mousse Cake</h3>
-        <button className={classes.btn}>See More</button>
-      </div>
-      <div className={classes.card}>
-        <img
-          className={classes.img}
-          src="https://img.taste.com.au/3vSWftg2/taste/2016/11/melt-and-mix-triple-choc-layer-cake-98301-1.jpeg"
-          alt=""
-        />
-        <h3 className={classes.title}>Triple Chocolate Mousse Cake</h3>
-        <button className={classes.btn}>See More</button>
-      </div>
-      <div className={classes.card}>
-        <img
-          className={classes.img}
-          src="https://img.taste.com.au/3vSWftg2/taste/2016/11/melt-and-mix-triple-choc-layer-cake-98301-1.jpeg"
-          alt=""
-        />
-        <h3 className={classes.title}>Triple Chocolate Mousse Cake</h3>
-        <button className={classes.btn}>See More</button>
-      </div>
-    </div>
   );
 };
 
