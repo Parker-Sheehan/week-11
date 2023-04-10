@@ -18,7 +18,7 @@ const Checkout = (props) => {
     };
     props.isSubmittingHandler()
 
-    const post = await fetch("https://react-http-6c9d5-default-rtdb.firebaseio.com/orderss.json" ,{
+    const post = await fetch("https://react-http-6c9d5-default-rtdb.firebaseio.com/orders.json" ,{
         method: 'POST',
         body: JSON.stringify(customerInfoObject),
         headers: {
