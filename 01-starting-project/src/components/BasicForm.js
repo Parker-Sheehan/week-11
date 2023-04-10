@@ -1,22 +1,76 @@
+import useInput from '../hooks/useInput'
+
 const BasicForm = (props) => {
+
+  const {
+    input: firstInput,
+    hasError: firstHasError,
+    isValid: firstIsValid,
+    inputHandler: firstInputHandler,
+    touchHandler: firstTouchHandler,
+    reset: firstReset
+  } = useInput((input) => input.trim() !== "")
+
+  const {
+    input: lastInput,
+    hasError: lastHasError,
+    isValid: lastIsValid,
+    inputHandler: lastInputHandler,
+    touchHandler: lastTouchHandler,
+    reset: lastReset
+  } = useInput((input) => input.trim() !== "")
+
+  const {
+    input: emailInput,
+    hasError: emailHasError,
+    isValid: emailIsValid,
+    inputHandler: emailInputHandler,
+    touchHandler: emailTouchHandler,
+    reset: emailReset
+  } = useInput((input) => input.includes('@'))
+
+
+
+  const firstClasses = firstHasError ? 'form-control invalid': 'form-control'
+  const lastClasses = lastHasError ? 'form-control invalid': 'form-control'
+  const emailClasses = emailHasError ? 'form-control invalid': 'form-control'
+
+
+  const formIsValid = (firstIsValid && lastIsValid && emailIsValid)
+
+
+  const submitHandler = (event) => {
+    event.preventDefault()
+
+
+    firstReset()
+    lastReset()
+    emailReset()
+  }
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className='control-group'>
-        <div className='form-control'>
+        <div className={firstClasses}>
           <label htmlFor='name'>First Name</label>
-          <input type='text' id='name' />
+          <input onBlur={firstTouchHandler} onChange={firstInputHandler} value={firstInput} type='text' id='name' />
         </div>
-        <div className='form-control'>
+        <div className={lastClasses}>
           <label htmlFor='name'>Last Name</label>
-          <input type='text' id='name' />
+          <input onBlur={lastTouchHandler} onChange={lastInputHandler} value={lastInput} type='text' id='name' />
         </div>
       </div>
-      <div className='form-control'>
+      <div className={emailClasses}>
         <label htmlFor='name'>E-Mail Address</label>
-        <input type='text' id='name' />
+        <input onBlur={emailTouchHandler} onChange={emailInputHandler} value={emailInput} type='text' id='name' />
       </div>
       <div className='form-actions'>
-        <button>Submit</button>
+        {firstHasError && <p className='error-text'>First name can't be empty</p>}
+        {lastHasError && <p className='error-text'>Last name can't be empty</p>}
+        {emailHasError && <p className='error-text'>must be valid email</p>}
+
+
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
